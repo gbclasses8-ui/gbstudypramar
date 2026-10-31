@@ -32,7 +32,8 @@ const TELEGRAM_URL = "https://t.me/GBFreestudy";
 const WHATSAPP_URL = "https://whatsapp.com/channel/0029VbE9qxbLdQel3z7cMd1W";
 const LOGO_SRC = "/logo.png";
 const LOGO_FALLBACK = "https://i.ibb.co/Q3g9fGSt/1791541921524.png";
-const BANNER_SRC = "/assets/aistudio/WhatsApp_Image_2026-10-31_at_20.20.15_51be3925.jpeg";
+const BANNER_SRC = "/banner.jpeg";
+const BANNER_FALLBACK = "/assets/aistudio/WhatsApp_Image_2026-10-31_at_20.20.15_51be3925.jpeg";
 
 type ViewState = 'subjects' | 'categories' | 'chapters';
 
@@ -397,6 +398,12 @@ export default function App() {
               <div className="relative aspect-[16/9] w-full overflow-hidden bg-black">
                 <img
                   src={BANNER_SRC}
+                  onError={(e) => {
+                    const img = e.target as HTMLImageElement;
+                    if (img.src !== BANNER_FALLBACK) {
+                      img.src = BANNER_FALLBACK;
+                    }
+                  }}
                   alt="GB STUDY - महंगे BATCHES, COURSES ला रहा है और हमेशा लाता रहेगा"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.01]"
                 />
